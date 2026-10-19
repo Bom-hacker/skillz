@@ -1,3 +1,10 @@
+---
+name: User Story
+about: Erstelle eine neue User Story.
+title: "[US] "
+labels: ["user story"]
+---
+
 # User Story
 **As a** [Role]
 **I want** [an action or feature],
