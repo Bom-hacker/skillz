@@ -1,0 +1,57 @@
+{
+  "skills": [
+    {
+      "id": "skill_health_base",
+      "name": "Gesundheit & Energie",
+      "parentSkillId": "",
+      "childSkillIds": ["skill_fitness", "skill_nutrition"],
+      "startingXP": 50,
+      "currentXP": 50,
+      "description": "Basis für alles andere",
+      "posX": 0,
+      "posY": -180
+    },
+    {
+      "id": "skill_fitness",
+      "name": "Kraft & Ausdauer",
+      "parentSkillId": "skill_health_base",
+      "childSkillIds": [],
+      "startingXP": 20,
+      "currentXP": 20,
+      "description": "Regelmäßiges Training und Bewegung",
+      "posX": -160,
+      "posY": 40
+    },
+    {
+      "id": "skill_nutrition",
+      "name": "Ernährung",
+      "parentSkillId": "skill_health_base",
+      "childSkillIds": [],
+      "startingXP": 0,
+      "currentXP": 0,
+      "description": "Bewusstes Essen und Hydration",
+      "posX": 160,
+      "posY": 40
+    }
+  ],
+  "routines": [
+    {
+      "id": "routine_water",
+      "name": "Morgens 500ml Wasser",
+      "skillId": "skill_nutrition",
+      "requirements": "Keine",
+      "type": "Daily",
+      "when": "08:00"
+    }
+  ],
+  "goals": [
+    {
+      "id": "goal_5k",
+      "name": "5km laufen",
+      "skillId": "skill_fitness",
+      "goal": "Unter 28 Minuten bleiben",
+      "time": "In 4 Wochen",
+      "difficulty": "Medium"
+    }
+  ]
+}
