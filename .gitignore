@@ -1,5 +1,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,windows,linux,latex
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,linux,latex
+# Extended with Unity rules (see "Unity" block at the bottom)
 
 ### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
@@ -26,9 +27,10 @@
 # *.pdf
 
 ## for test coverage
-*.html
-*.xml
-*.svg
+# Disabled for Unity: these would hide HTML/XML/SVG assets in the project
+# *.html
+# *.xml
+# *.svg
 
 
 ## Generated if empty string is given at "Please type another file name for output:"
@@ -394,3 +396,45 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,linux,latex
 
 
+### Unity ###
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# .meta files must be committed
+!/[Aa]ssets/**/*.meta
+
+# Auto-generated project files
+ExportedObj/
+.consulo/
+*.csproj
+*.unityproj
+*.sln
+*.slnx
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+.vs/
+.vscode/
+
+# Crash and build files
+sysinfo.txt
+crashlytics-build.properties
+*.apk
+*.aab
+*.unitypackage
+*.app
