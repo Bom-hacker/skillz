@@ -17,7 +17,7 @@ namespace DefaultNamespace
 
         private void Start()
         {
-            saveButton.onClick.AddListener(SaveNewSkill);
+           // saveButton.onClick.AddListener(SaveNewSkill);
         }
 
         public void SaveNewSkill()

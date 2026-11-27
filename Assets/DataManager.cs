@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 
 [Serializable]
-public class SkillNodeData
+public class SkillNodeData // Repräsentiert einen einzelnen Knoten im Tree
 {
     public string id;
     public string name;
@@ -18,7 +18,7 @@ public class SkillNodeData
 }
 
 [Serializable]
-public class RoutineData
+public class RoutineData // Repräsentiert eine Routine, die XP liefert
 {
     public string id;
     public string name;
@@ -29,7 +29,7 @@ public class RoutineData
 }
 
 [Serializable]
-public class GoalData
+public class GoalData // Repräsentiert ein konkretes Ziel, das auf einen Skill "einwirkt"
 {
     public string id;
     public string name;
@@ -40,7 +40,7 @@ public class GoalData
 }
 
 [Serializable]
-public class SkillzSaveData
+public class SkillzSaveData // Root Container für gesamte JSON. Bündelt alle Listen in einem Objekt
 {
     public List<SkillNodeData> skills = new List<SkillNodeData>();
     public List<RoutineData> routines = new List<RoutineData>();
@@ -48,15 +48,20 @@ public class SkillzSaveData
 }
 
 
+    //Datamanager: Verwaltet das Laden, Speichern und Zurücksetzen der JSON-Daten
+
     public class DataManager : MonoBehaviour
     {
+        // Globale Instanz für Zugriff aus anderen Skripts
         public static DataManager Instance { get; private set; }
+        // Aktuell im Arbeitsspeicher gehaltene Datne
         public SkillzSaveData CurrentData { get; private set; }
 
+        // Ausgelöst, sobald Daten gespeichert oder zurückgesetzt werden
         public event Action OnDataChanged;
 
-        private string saveFilePath;
-        private string initialFilePath;
+        private string saveFilePath; // Aktiver Spielstand
+        private string initialFilePath; // Initiale Test-JSON
 
         private void Awake()
         {
