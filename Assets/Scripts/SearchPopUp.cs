@@ -21,6 +21,8 @@ public class SearchPopup : MonoBehaviour
     public GameObject resultItemPrefab;
     public int maxResults = 5;
 
+    public DetailPopup detailPopup;
+
     void Awake()
     {
         inputField.onValueChanged.AddListener(OnSearchChanged);
@@ -88,12 +90,17 @@ public class SearchPopup : MonoBehaviour
         }
     }
 
-    private void OnResultSelected(SearchEntry entry)
-    {
-        Debug.Log("Ausgewaehlt: " + entry.type + " / " + entry.name + " (" + entry.id + ")");
-        gameObject.SetActive(false);
-    }
+   private void OnResultSelected(SearchEntry entry)
+{
+    gameObject.SetActive(false);
 
+    switch (entry.type)
+    {
+        case EntryType.Skill: detailPopup.ShowSkill(entry.id); break;
+        case EntryType.Routine: detailPopup.ShowRoutine(entry.id); break;
+        case EntryType.Goal: detailPopup.ShowGoal(entry.id); break;
+    }
+}
     private void ClearResults()
     {
         foreach (Transform child in resultsContainer)

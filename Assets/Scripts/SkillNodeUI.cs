@@ -1,16 +1,19 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace DefaultNamespace
 {
-    public class SkillNodeUI : MonoBehaviour
+    public class SkillNodeUI : MonoBehaviour, IPointerClickHandler
     {
         public TextMeshProUGUI titleText;
         public TextMeshProUGUI xpText;
         public Image backgroundImage;
-        
+
         public SkillNodeData NodeData { get; private set; }
+        public Action<SkillNodeData> Clicked;
 
         public void Setup(SkillNodeData data)
         {
@@ -24,6 +27,11 @@ namespace DefaultNamespace
                     ? new Color(0.2f, 0.7f, 0.4f)
                     : new Color(0.4f, 0.4f, 0.4f);
             }
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            Clicked?.Invoke(NodeData);
         }
     }
 }

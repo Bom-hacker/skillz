@@ -11,6 +11,8 @@ namespace DefaultNamespace
         public SkillNodeUI skillNodePrefab; // Prefab für einen einzelnen Skill
         public RectTransform linePrefab; // Ein einfaches dünnes UI Image als Verbindungslinie
         
+        public DetailPopup detailPopup;
+
         private readonly List<GameObject> spawnedObjects = new List<GameObject>();
 
         private void Start()
@@ -48,6 +50,7 @@ namespace DefaultNamespace
                 rt.anchoredPosition = new Vector2(skill.posX, skill.posY);
                 
                 nodeInstance.Setup(skill);
+                nodeInstance.Clicked = data => detailPopup.ShowSkill(data.id);
                 nodeTransforms[skill.id] = rt;
                 spawnedObjects.Add(nodeInstance.gameObject);
             }
