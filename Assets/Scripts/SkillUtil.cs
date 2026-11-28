@@ -67,4 +67,24 @@ public static class SkillUtil
         }
         return false;
     }
+
+    // Gibt einem Skill XP und reicht dieselbe Menge an alle Eltern-Skills nach oben weiter
+public static void AddXP(string skillId, int amount, bool save = true)
+{
+    if (amount == 0) return;
+
+    string current = skillId;
+    HashSet<string> visited = new HashSet<string>(); // Schutz vor Endlosschleifen
+
+    while (!string.IsNullOrEmpty(current) && visited.Add(current))
+    {
+        SkillNodeData skill = Find(current);
+        if (skill == null) break;
+
+        skill.currentXP = Mathf.Max(0, skill.currentXP + amount);
+        current = skill.parentSkillId;
+    }
+
+    if (save) DataManager.Instance.SaveData();
+}
 }
