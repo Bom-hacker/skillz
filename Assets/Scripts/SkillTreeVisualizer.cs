@@ -11,7 +11,7 @@ namespace DefaultNamespace
         public SkillNodeUI skillNodePrefab; // Prefab für einen einzelnen Skill
         public RectTransform linePrefab; // Ein einfaches dünnes UI Image als Verbindungslinie
         
-        public DetailPopup detailPopup;
+       public SkillDetailPopup skillDetailPopup;
 
         private readonly List<GameObject> spawnedObjects = new List<GameObject>();
 
@@ -50,13 +50,14 @@ namespace DefaultNamespace
                 rt.anchoredPosition = new Vector2(skill.posX, skill.posY);
                 
                 nodeInstance.Setup(skill);
-                nodeInstance.Clicked = data => detailPopup.ShowSkill(data.id);
+                nodeInstance.Clicked = data => skillDetailPopup.Show(data.id);
                 nodeTransforms[skill.id] = rt;
                 spawnedObjects.Add(nodeInstance.gameObject);
             }
 
             foreach (var skill in skills)
             {
+                if (!IsVisible(skill, skills)) continue;
                 if (!string.IsNullOrEmpty(skill.parentSkillId) && nodeTransforms.ContainsKey(skill.parentSkillId) &&
                     nodeTransforms.ContainsKey(skill.id))
                 {
@@ -80,6 +81,20 @@ namespace DefaultNamespace
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             line.localRotation = Quaternion.Euler(0, 0, angle);
         }
+
+        // Ein Skill ist sichtbar, wenn er und alle seine Vorfahren nicht versteckt sind
+private bool IsVisible(SkillNodeData skill, List<SkillNodeData> all)
+{
+    SkillNodeData current = skill;
+    int guard = 0;
+    while (current != null && guard++ < 100)
+    {
+        if (current.isHidden) return false;
+        string parentId = current.parentSkillId;
+        current = all.Find(s => s.id == parentId);
+    }
+    return true;
+}
 
     }
 }

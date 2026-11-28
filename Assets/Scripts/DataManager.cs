@@ -15,6 +15,8 @@ public class SkillNodeData // Repräsentiert einen einzelnen Knoten im Tree
     public string description;
     public float posX;
     public float posY;
+
+    public bool isHidden;
 }
 
 [Serializable]

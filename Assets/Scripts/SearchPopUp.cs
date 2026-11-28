@@ -21,7 +21,7 @@ public class SearchPopup : MonoBehaviour
     public GameObject resultItemPrefab;
     public int maxResults = 5;
 
-    public DetailPopup detailPopup;
+    public SkillDetailPopup skillDetailPopup;
 
     void Awake()
     {
@@ -96,9 +96,9 @@ public class SearchPopup : MonoBehaviour
 
     switch (entry.type)
     {
-        case EntryType.Skill: detailPopup.ShowSkill(entry.id); break;
-        case EntryType.Routine: detailPopup.ShowRoutine(entry.id); break;
-        case EntryType.Goal: detailPopup.ShowGoal(entry.id); break;
+        case EntryType.Skill: skillDetailPopup.Show(entry.id); break;
+       // case EntryType.Routine: skillDetailPopup.ShowRoutine(entry.id); break;
+      //  case EntryType.Goal: skillDetailPopup.ShowGoal(entry.id); break;
     }
 }
     private void ClearResults()
